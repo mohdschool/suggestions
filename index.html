@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>منصة المقترحات والآراء</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+            background: #f3f6fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+            padding: 24px 20px;
+        }
+
+        .card-header {
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            margin: 0 0 4px;
+            font-size: 1.4rem;
+            color: #1a3a6d;
+        }
+
+        .card-header p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            border-radius: 10px;
+            border: 1px solid #d5d8e0;
+            padding: 8px 10px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            background: #fafbff;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2c5aa0;
+            box-shadow: 0 0 0 2px rgba(44,90,160,0.15);
+            background: #ffffff;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .roles label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: linear-gradient(135deg, #2c5aa0, #6a4c9c);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 10px 22px rgba(44,90,160,0.3);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(44,90,160,0.4);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .status {
+            font-size: 0.85rem;
+        }
+
+        .status.success {
+            color: #1b8a3c;
+        }
+
+        .status.error {
+            color: #c0392b;
+        }
+
+        .note {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: -4px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="card">
+        <div class="card-header">
+            <h1>منصة المقترحات والآراء</h1>
+            <p>صوتك مهم في تطوير <strong>منصة تواصل</strong> والبيئة التعليمية في المدرسة.</p>
+        </div>
+
+        <form id="suggestionForm">
+            <div class="field">
+                <label for="category">أنا أمثل:</label>
+                <select id="category" name="category" required>
+                    <option value="">اختر الفئة</option>
+                    <option value="ولي أمر">ولي أمر</option>
+                    <option value="طالب">طالب</option>
+                    <option value="هيئة تعليمية">أحد أفراد الهيئة التعليمية</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="name">الاسم (اختياري، لكن يفضّل):</label>
+                <input type="text" id="name" name="name" placeholder="الاسم الثلاثي إن أحببت">
+            </div>
+
+            <div class="field">
+                <label for="phone">رقم التواصل (اختياري):</label>
+                <input type="tel" id="phone" name="phone" placeholder="مثال: 9XXXXXXX">
+                <div class="note">لن يُستخدم رقمك إلا للتواصل معك بخصوص المقترح إن لزم الأمر.</div>
+            </div>
+
+            <div class="field">
+                <label>نوع المُقترِح:</label>
+                <div class="roles">
+                    <label><input type="radio" name="role" value="منصة تواصل" checked> منصة تواصل</label>
+                    <label><input type="radio" name="role" value="العملية التعليمية"> العملية التعليمية</label>
+                    <label><input type="radio" name="role" value="البرامج والفعاليات"> البرامج والفعاليات</label>
+                    <label><input type="radio" name="role" value="أخرى"> أخرى</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="title">عنوان المقترح / الملاحظة (مختصر):</label>
+                <input type="text" id="title" name="title" required placeholder="مثال: إضافة صفحة لعرض شهادات التقدير">
+            </div>
+
+            <div class="field">
+                <label for="message">نص المقترح أو الرأي:</label>
+                <textarea id="message" name="message" required placeholder="اكتب فكرتك أو ملاحظتك بالتفصيل هنا..."></textarea>
+            </div>
+
+            <div class="field">
+                <label>
+                    <input type="checkbox" id="contactAllowed" name="contactAllowed" value="يسمح بالتواصل">
+                    أوافق على أن يتم التواصل معي لمتابعة هذا المقترح عند الحاجة.
+                </label>
+            </div>
+
+            <div class="actions">
+                <button type="submit" id="submitBtn">إرسال المقترح</button>
+                <span class="status" id="statusMsg"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // ضع هنا رابط الـ Web App من Apps Script
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzdcK1xizYiYpXxMyop0RRN45w5y6__Z8BGurMEjQgosOl9RK4umFD_WKKt_7bdv4UDSA/exec"; // استبدلها بالرابط الفعلي
+
+    const form = document.getElementById('suggestionForm');
+    const statusMsg = document.getElementById('statusMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        statusMsg.textContent = '';
+        statusMsg.className = 'status';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+
+        // إذا لم يتم اختيار الفئة أو العنوان أو النص، المتصفّح سيتكفل لأنه required
+        try {
+            const response = await fetch(WEB_APP_URL, {
+                method: 'POST',
+                body: new URLSearchParams(formData) // x-www-form-urlencoded
+            });
+
+            let result = {};
+            try {
+                result = await response.json();
+            } catch (err) {
+                // في حال لم يرجع JSON واضح
+                result = { success: true };
+            }
+
+            if (result.success) {
+                statusMsg.textContent = result.message || 'تم إرسال مقترحك بنجاح. شكرًا لمساهمتك.';
+                statusMsg.classList.add('success');
+                form.reset();
+            } else {
+                statusMsg.textContent = result.message || 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.';
+                statusMsg.classList.add('error');
+            }
+        } catch (error) {
+            console.error(error);
+            statusMsg.textContent = 'تعذر الاتصال بالخادم، تحقق من الاتصال أو الرابط.';
+            statusMsg.classList.add('error');
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>
